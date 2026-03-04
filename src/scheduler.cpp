@@ -115,6 +115,19 @@ void Scheduler::delay_task(TaskId id, TickCount ticks) {
     task->wake_tick = tick_count_ + ticks;
 }
 
+void Scheduler::yield_task(TaskId id) {
+    Task* task = get_task(id);
+    if (!task) return;
+    task->state = TaskState::READY;
+    task->time_slice_remaining = config_.default_time_slice;
+    // Move to back of ready list
+    auto it = ready_lists_.find(task->effective_priority);
+    if (it != ready_lists_.end()) {
+        it->second.remove(id);
+        it->second.push_back(id);
+    }
+}
+
 TaskId Scheduler::schedule() {
     // Find highest priority ready task (lowest numerical priority = highest)
     for (auto& [priority, list] : ready_lists_) {

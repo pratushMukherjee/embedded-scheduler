@@ -15,3 +15,4 @@ endfunction()
 
 add_rtos_test(test_task)
 add_rtos_test(test_scheduler)
+add_rtos_test(test_round_robin)

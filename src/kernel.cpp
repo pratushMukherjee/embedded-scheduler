@@ -48,8 +48,7 @@ void Kernel::tick() {
                 // Stay running
                 break;
             case TaskAction::YIELD:
-                next_task->state = TaskState::READY;
-                next_task->time_slice_remaining = 0;  // Force round-robin
+                scheduler_.yield_task(next);
                 break;
             case TaskAction::FINISHED:
                 next_task->state = TaskState::DORMANT;

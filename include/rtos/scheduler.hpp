@@ -35,8 +35,9 @@ public:
     void set_effective_priority(TaskId id, Priority priority);
     void restore_base_priority(TaskId id);
 
-    // Delay
+    // Delay / yield
     void delay_task(TaskId id, TickCount ticks);
+    void yield_task(TaskId id);
 
     // Scheduling
     TaskId schedule();
