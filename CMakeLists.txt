@@ -19,6 +19,8 @@ add_library(rtos_core STATIC
     src/kernel.cpp
     src/semaphore.cpp
     src/mutex.cpp
+    src/message_queue.cpp
+    src/event_flags.cpp
 )
 
 target_include_directories(rtos_core PUBLIC
