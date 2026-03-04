@@ -17,6 +17,8 @@ include(StaticAnalysis)
 add_library(rtos_core STATIC
     src/scheduler.cpp
     src/kernel.cpp
+    src/semaphore.cpp
+    src/mutex.cpp
 )
 
 target_include_directories(rtos_core PUBLIC
